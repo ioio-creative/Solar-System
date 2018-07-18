@@ -1,0 +1,1 @@
+const speedMultiplier=5;window.onload=function(){$(".planetWrapper").prepend('<a-animation attribute="rotation" to="0 236.4535068945 0" repeat="indefinite" easing="linear"></a-animation>')};
