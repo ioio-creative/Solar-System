@@ -7,6 +7,7 @@ View here: https://ioio-creative.github.io/Solar-System/
 - [X] Migrate to React
 - [ ] Class system for planets and stars
 - [ ] Add orbital inclincations
-- [ ] Add binary systems
+- [ ] Add orbital eccentricities
+- [ ] Let planets orbit stars instead of coordinates (allows for binary/trinary etc. systems)
 - [ ] Fix camera
 - [ ] Add textures
