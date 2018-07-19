@@ -1,6 +1,5 @@
 import 'aframe'
 import React, { Component } from 'react';
-import {Helmet} from "react-helmet";
 import './App.css';
 
 // Solar System textures
@@ -10,10 +9,6 @@ class App extends Component {
   render() {
     return (
       <div className="application">
-        <Helmet>
-                <meta charSet="utf-8" />
-                <title>🌏 Solar System</title>
-          </Helmet>
         <a-scene className="solarSystem">
           <a-assets>
             <img src={skyBox} alt="Milky Way skybox" id="skybox"></img>
