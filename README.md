@@ -3,8 +3,11 @@ Solar system for the web made using A-frame and WebVR
 
 View here: https://ioio-creative.github.io/Solar-System/
 
-## Work in progress
+## Milestones
+- [X] Migrate to React
 - [ ] Class system for planets and stars
-- [ ] Migrate to React for UI
+- [ ] Add orbital inclincations
+- [ ] Add orbital eccentricities
+- [ ] Let planets orbit stars instead of coordinates (allows for binary/trinary etc. systems)
 - [ ] Fix camera
 - [ ] Add textures
