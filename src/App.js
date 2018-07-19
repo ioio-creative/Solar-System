@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 // Solar System textures
-import skyBox from './assets/milkyway.jpg';
+import skybox from './assets/milkyway.jpg';
 
 class App extends Component {
   render() {
@@ -11,7 +11,7 @@ class App extends Component {
       <div className="application">
         <a-scene className="solarSystem">
           <a-assets>
-            <img src={skyBox} alt="Milky Way skybox" id="skybox"></img>
+            <img src={skybox} alt="Milky Way skybox" id="skybox"></img>
           </a-assets>
 
           <a-camera look-controls="" wasd-controls="enabled:false;adEnabled:false;wsEnabled:false" position="0 10.272 25.664970417191608" rotation="-22.051841688289343 0 0" camera="" data-aframe-inspector-original-camera=""></a-camera>
