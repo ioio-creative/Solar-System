@@ -5,9 +5,12 @@ View here: https://ioio-creative.github.io/Solar-System/
 
 ## Milestones
 - [X] Migrate to React
-- [ ] Class system for planets and stars
-- [ ] Add orbital inclincations
-- [ ] Add orbital eccentricities
-- [ ] Let planets orbit stars instead of coordinates (allows for binary/trinary etc. systems)
+- [ ] Celestial object templating system [in progress]
+  - [ ] Add template for light and emission
+  - [ ] Add template for orbiting other celestial objects and coordinates
+  - [ ] Add template for textures
+  - [ ] Add template for material type
+  - [ ] Add orbital inclincations
+  - [ ] Add orbital eccentricities
 - [ ] Fix camera
-- [ ] Add textures
+- [ ] Add navigation
