@@ -1,15 +1,24 @@
 import 'aframe'
 import React, { Component } from 'react';
 import './App.css';
-import './classes/_stars.js'
-import { celestialObject, RenderCelestialObject } from './classes/_celestialObject.js'
+import { RenderSystems, RenderCelestialBody } from './classes/_render.js'
 
-//Import textures
-import skybox from './assets/milkyway.jpg';
+//Import static assets
+import planetarySystems from './static/data/planetarySystems.json'
+import skybox from './static/img/milkyway.jpg';
 
 //Planet variables
 //Name:string, rotation: int, scale:int, color:string, star:string, period:int
-const mercury = new celestialObject ("Mercury", -123.54649, 0.16, "#707070", 2.8, "undefined", 8800);
+const mercury = {
+  name: "Mercury",
+  position: -123.54649,
+  scale: 0.16,
+  color: "#707070",
+  radius: 2.8,
+  center: "0 0 0",
+  period: 8800
+};
+
 
 
 class App extends Component {
@@ -28,7 +37,7 @@ class App extends Component {
           <a-sphere scale="2 2 2" light="type:point;castShadow:true;color:#fff000;groundColor:#fff000" id="Sun" material="color:#fff000;emissive: #fff000;" geometry=""></a-sphere>
 
 
-          <RenderCelestialObject celestialObject={ mercury } />
+          <RenderCelestialBody celestialBody={ mercury } />
 
           <a-entity class="planetWrapper" id="venusWrapper" rotation="0 -140.42042409742803 0">
             <a-animation attribute="rotation" to="0 219.5795759026 0" repeat="indefinite" easing="linear" class="" dur="2556.8"></a-animation>
