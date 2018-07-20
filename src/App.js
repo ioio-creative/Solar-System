@@ -1,9 +1,16 @@
 import 'aframe'
 import React, { Component } from 'react';
 import './App.css';
+import './classes/_stars.js'
+import { celestialObject, RenderCelestialObject } from './classes/_celestialObject.js'
 
-// Solar System textures
+//Import textures
 import skybox from './assets/milkyway.jpg';
+
+//Planet variables
+//Name:string, rotation: int, scale:int, color:string, star:string, period:int
+const mercury = new celestialObject ("Mercury", -123.54649, 0.16, "#707070", 2.8, "undefined", 8800);
+
 
 class App extends Component {
   render() {
@@ -11,7 +18,7 @@ class App extends Component {
       <div className="application">
         <a-scene className="solarSystem">
           <a-assets>
-            <img src={skybox} alt="Milky Way skybox" id="skybox"></img>
+            <img src={ skybox } alt="Milky Way skybox" id="skybox"></img>
           </a-assets>
 
           <a-camera look-controls="" wasd-controls="enabled:false;adEnabled:false;wsEnabled:false" position="0 10.272 25.664970417191608" rotation="-22.051841688289343 0 0" camera="" data-aframe-inspector-original-camera=""></a-camera>
@@ -19,10 +26,10 @@ class App extends Component {
           <a-sky src="#skybox" material="" geometry=""></a-sky>
 
           <a-sphere scale="2 2 2" light="type:point;castShadow:true;color:#fff000;groundColor:#fff000" id="Sun" material="color:#fff000;emissive: #fff000;" geometry=""></a-sphere>
-          <a-entity class="planetWrapper" id="mercuryWrapper" rotation="0 -123.54649310552516 0">
-            <a-animation attribute="rotation" to="0 236.4535068945 0" repeat="indefinite" easing="linear" class=""></a-animation>
-            <a-sphere position="2.8 0 0" scale="0.16 0.16 0.16" class="planet" id="Mercury" material="color:#707070" geometry="" shadow=""></a-sphere>
-          </a-entity>
+
+
+          <RenderCelestialObject celestialObject={ mercury } />
+
           <a-entity class="planetWrapper" id="venusWrapper" rotation="0 -140.42042409742803 0">
             <a-animation attribute="rotation" to="0 219.5795759026 0" repeat="indefinite" easing="linear" class="" dur="2556.8"></a-animation>
             <a-sphere position="4 0 0" scale="0.4 0.4 0.4" class="planet" id="Venus" material="color:#da742b" geometry="" shadow=""></a-sphere>
