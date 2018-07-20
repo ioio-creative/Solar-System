@@ -7,27 +7,13 @@ import { RenderSystems, RenderCelestialBody } from './classes/_render.js'
 import planetarySystems from './static/data/planetarySystems.json'
 import skybox from './static/img/milkyway.jpg';
 
-//Planet variables
-//Name:string, rotation: int, scale:int, color:string, star:string, period:int
-const mercury = {
-  name: "Mercury",
-  position: -123.54649,
-  scale: 0.16,
-  color: "#707070",
-  radius: 2.8,
-  center: "0 0 0",
-  period: 8800
-};
-
-
-
 class App extends Component {
   render() {
     return (
       <div className="application">
         <a-scene className="solarSystem">
           <a-assets>
-            <img src={ skybox } alt="Milky Way skybox" id="skybox"></img>
+            <img src = { skybox } alt="Milky Way skybox" id="skybox"></img>
           </a-assets>
 
           <a-camera look-controls="" wasd-controls="enabled:false;adEnabled:false;wsEnabled:false" position="0 10.272 25.664970417191608" rotation="-22.051841688289343 0 0" camera="" data-aframe-inspector-original-camera=""></a-camera>
@@ -37,7 +23,7 @@ class App extends Component {
           <a-sphere scale="2 2 2" light="type:point;castShadow:true;color:#fff000;groundColor:#fff000" id="Sun" material="color:#fff000;emissive: #fff000;" geometry=""></a-sphere>
 
 
-          <RenderCelestialBody celestialBody={ mercury } />
+          <RenderCelestialBody celestialBody={ planetarySystems.Systems['CelestialObjects'][0] } />
 
           <a-entity class="planetWrapper" id="venusWrapper" rotation="0 -140.42042409742803 0">
             <a-animation attribute="rotation" to="0 219.5795759026 0" repeat="indefinite" easing="linear" class="" dur="2556.8"></a-animation>

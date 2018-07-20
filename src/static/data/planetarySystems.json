@@ -1,13 +1,19 @@
 {
-    "cars": {
-        "Nissan": [
-            {"model":"Sentra", "doors":4},
-            {"model":"Maxima", "doors":4},
-            {"model":"Skyline", "doors":2}
-        ],
-        "Ford": [
-            {"model":"Taurus", "doors":4},
-            {"model":"Escort", "doors":4}
-        ]
-    }
-}
+     "Systems": {
+         "CelestialObjects": [
+             {
+               "name": "Mercury",
+               "position": "-123.54649",
+               "scale": "0.16",
+               "color": "#707070",
+               "radius": "2.8",
+               "center": "0 0 0",
+               "period": "8800",
+             },
+             {
+               "model":"Sentra",
+               "doors":4
+             }
+         ]
+     }
+ }
