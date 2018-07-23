@@ -1,7 +1,7 @@
 import 'aframe'
 import React, { Component } from 'react';
 import './App.css';
-import { RenderSystems, RenderCelestialBody } from './classes/_render.js'
+import { RenderSystems } from './classes/_render.js'
 
 //Import static assets
 import planetarySystems from './static/data/planetarySystems.json'
@@ -23,7 +23,7 @@ class App extends Component {
           <a-sphere scale="2 2 2" light="type:point;castShadow:true;color:#fff000;groundColor:#fff000" id="Sun" material="color:#fff000;emissive: #fff000;" geometry=""></a-sphere>
 
 
-          <RenderCelestialBody celestialBody={ planetarySystems.Systems['CelestialObjects'][0] } />
+          <RenderSystems planetarySystemsFile={ planetarySystems } />
 
           <a-entity class="planetWrapper" id="venusWrapper" rotation="0 -140.42042409742803 0">
             <a-animation attribute="rotation" to="0 219.5795759026 0" repeat="indefinite" easing="linear" class="" dur="2556.8"></a-animation>
