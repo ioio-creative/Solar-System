@@ -10,7 +10,7 @@ export class RenderSystems extends React.Component {
     var planetarySystemsFile = this.props.planetarySystemsFile;
     var objectsToRender = planetarySystemsFile.CelestialObjects.map (
       function(objectToRender, index) {
-        return <RenderCelestialBody celestialBody={ objectToRender } key={ planetarySystemsFile.CelestialObjects[index].name }/>
+        return <RenderCelestialBody planetarySystemsFile = { planetarySystemsFile } celestialBody={ objectToRender } key={ planetarySystemsFile.CelestialObjects[index].name }/>
       }
     )
     return (
@@ -41,8 +41,15 @@ class RenderCelestialBody extends React.Component {
       //Center is a valid coordinate
       // Do nothing
     } else {
-      // Not valid coordinates, searchCelestialBodyArray
-
+      // Not valid coordinates, search JSON for celestialObjects with matching names
+      var i;
+      for (i = 0; i < this.props.planetarySystemsFile.CelestialObjects.length; i++) {
+        if (this.props.planetarySystemsFile.CelestialObjects[i].name.toLowerCase() === center.toLowerCase()) {
+          //Matching CelestialObject name found, set center coordinates to the matching CelestialObject
+          center = this.props.planetarySystemsFile.CelestialObjects[i].center;
+          break;
+        }
+      }
     }
 
     //Change returned values
