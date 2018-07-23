@@ -53,7 +53,7 @@ class RenderCelestialBody extends React.Component {
         <a-entity id={ name+"Wrapper" } position={ center } rotation = { "0 " + position + " 0" } animation={ "property:rotation;to:0 " + (parseFloat(position) + 360).toString() + " 0;dur:" +
           (parseFloat(period) * animationMultiplier).toString() + ";easing:linear;loop:true" }>
           <a-sphere id={ name } position={ radius + " 0 0" } scale={ scale + " " + scale + " " + scale } material={ "color:" + color + ";emissive:" + color }
-            light={"type:point;castShadow:true;color:" + color + ";groundColor:" + color } geometry=""></a-sphere>
+            light={"type:point;castShadow:true;color:" + color + ";groundColor:" + color + ";intensity:" + intensity + ";distance:" + (parseFloat(intensity) * distanceMultiplier).toString() } geometry=""></a-sphere>
         </a-entity>
       )
     } else {
