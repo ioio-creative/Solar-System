@@ -48,7 +48,7 @@
          {
            "name": "Mars",
            "scale": "0.3",
-           "center": "Sun",
+           "center": "Earth",
            "radius": "7",
            "position": "-52.2157213780263",
            "rotation": "0",

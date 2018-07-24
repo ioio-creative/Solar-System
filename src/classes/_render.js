@@ -5,12 +5,15 @@ import '../App.css';
 var animationMultiplier = 35; // Bigger is slower
 var distanceMultiplier = 30;
 
+//Globals
+var renderingMoons = false;
+
 export class RenderBodies extends React.Component {
   render() {
     var planetaryBodies = this.props.planetaryBodies;
     var bodiesToRender = planetaryBodies.map (
       function(objectToRender, index) {
-        return <RenderCelestialBody planetarySystemsFile = { planetaryBodies } celestialBody={ objectToRender } key={ planetaryBodies[index].name }/>
+        return <RenderCelestialBody celestialBody={ objectToRender } key={ planetaryBodies[index].name }/>
       }
     )
     return (
@@ -33,34 +36,32 @@ class RenderCelestialBody extends React.Component {
     var period = this.props.celestialBody.period || "100"; //Period of orbit in ms/days whatever you choose
     var intensity = this.props.celestialBody.intensity || ""; // Distance is intensity x distanceMultiplier (use generally for stars)
     var color = this.props.celestialBody.color || "#ffffff"; // Color of celestial object
-    var texture = this.props.celestialBody.texture || ""; // Texture (generally for stars)
-
-    //Props related variables
-    var planetarySystemsFile = this.props.planetarySystemsFile;
+    var texture = this.props.celestialBody.texture || ""; // Texture
 
     // Check center
     var centerArray = (center).split(" ", 3);
     if (isNaN(parseFloat(centerArray[0])) === false && isNaN(parseFloat(centerArray[1])) === false && isNaN(parseFloat(centerArray[2])) === false) {
       //Center is a valid coordinate
-      // Do nothing
+      // Do nothing and continue with rendering
     } else {
-      // Not valid coordinates, do nothing and return, probably already rendered by parent CelestialObject
-      return(null);
+      // Not valid coordinates, is a moon, so set to "0 0 0"
+      center = "0 0 0";
     }
 
-    // Search for orbitingSubBodies and setup for rendering later
-    var orbitingSubBodies = [];
-    var i;
-    for (i = 0; i < planetarySystemsFile.length; i++) {
-      //Search for CelestialObjects that orbit the currently rendering CelestialObject
-      if (planetarySystemsFile[i].center.toLowerCase() === name) {
-        //Match found, add CelestialObject to the orbitingSubBodies array
-        orbitingSubBodies[i] = planetarySystemsFile[i];
-
-        //Scale size back up or down depending on scale of parent body
-        orbitingSubBodies[i].scale = (parseFloat(orbitingSubBodies[i].scale) / parseFloat(scale)).toString();
-      }
-    }
+    // //Search for orbitingSubBodies and setup for rendering later
+    // var orbitingSubBodies = [];
+    // var i;
+    // for (i = 0; i < planetarySystemsFile.length; i++) {
+    //   //Search for CelestialObjects that orbit the currently rendering CelestialObject
+    //   if (planetarySystemsFile[i].center() === name) {
+    //     //Match found, add CelestialObject to the orbitingSubBodies array
+    //     orbitingSubBodies.push(planetarySystemsFile[i]);
+    //     //Get latest entry
+    //     var j = orbitingSubBodies.length - 1;
+    //     //Scale size back up or down depending on scale of parent body
+    //     orbitingSubBodies[j].scale = (parseFloat(orbitingSubBodies[j].scale) / parseFloat(scale)).toString();
+    //   }
+    // }
 
     //Change returned values
     if (intensity !== "") {
@@ -69,10 +70,10 @@ class RenderCelestialBody extends React.Component {
       return (
         <a-entity id={ name+"Wrapper" } position={ center } rotation = { "0 " + position + " 0" } animation={ "property:rotation;to:0 " + (parseFloat(position) + 360).toString() + " 0;dur:" +
           (parseFloat(period) * animationMultiplier).toString() + ";easing:linear;loop:true" }>
-          <a-sphere id={ name } position={ radius + " 0 0" } scale={ scale + " " + scale + " " + scale } material={ "color:" + color + ";emissive:" + color }
+          <a-sphere className="orbitingBodies" position={ radius + " 0 0" } scale={ scale + " " + scale + " " + scale } material={ "color:" + color + ";emissive:" + color }
             light={"type:point;castShadow:true;color:" + color + ";groundColor:" + color + ";intensity:" + intensity + ";distance:" + (parseFloat(intensity) * distanceMultiplier).toString() } geometry="">
-              <RenderBodies planetaryBodies={ orbitingSubBodies } />
-            </a-sphere>
+            { this.props.children }
+          </a-sphere>
         </a-entity>
       )
     } else {
@@ -80,8 +81,8 @@ class RenderCelestialBody extends React.Component {
       return(
         <a-entity id={ name+"Wrapper" } position={ center } rotation = { "0 " + position + " 0" } animation={ "property:rotation;to:0 " + (parseFloat(position) + 360).toString() + " 0;dur:" +
           (parseFloat(period) * animationMultiplier).toString() + ";easing:linear;loop:true" }>
-          <a-sphere id={ name } position={ radius + " 0 0" } scale={ scale + " " + scale + " " + scale } material={ "color:" + color } geometry="" shadow="">
-            <RenderBodies planetaryBodies={ orbitingSubBodies } />
+          <a-sphere className="orbitingBodies" position={ radius + " 0 0" } scale={ scale + " " + scale + " " + scale } material={ "color:" + color } geometry="" shadow="">
+            { this.props.children }
           </a-sphere>
         </a-entity>
       )
